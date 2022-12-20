@@ -31,7 +31,7 @@ def dd_upload(count, speed, host):
     try:
         upload_cmd = 'dd if=/dev/urandom bs=1024000 count=$ | pv -q -L @ | nc -u ^ 53'.replace("$", count).replace("@", speed).replace("^", host)
         #upload_cmd = 'echo "done"'
-        output = subprocess.check_output(upload_cmd, shell=True, start_new_session=True)
+        output = subprocess.check_output(upload_cmd, shell=True)
         print(output.decode("utf-8"))
         return 1
     except Exception as e:
@@ -76,7 +76,7 @@ def upload(bot, update, args):
                 except:
                     host = 'epicgames.com'
                 print(count, " ", speed, " ", host)
-                if(dd_upload(count, speed, host)):
+                if(dd_upload(count, speed, host)==1):
                     print("done")
                     send_text(int(inCome_uid), ms.done)
                 else:
