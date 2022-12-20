@@ -1,7 +1,6 @@
 import telegram
 from telegram import user
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-import jdatetime
 import messages as ms
 import subprocess
 import tokens
