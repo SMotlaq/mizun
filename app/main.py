@@ -30,9 +30,8 @@ def bmon_get():
 def dd_upload(count, speed, host):
     try:
         upload_cmd = 'dd if=/dev/urandom bs=1024000 count=$ | pv -q -L @ | nc -u ^ 53'.replace("$", count).replace("@", speed).replace("^", host)
-        #upload_cmd = 'echo "done"'
-        output = subprocess.check_output(upload_cmd, shell=True)
-        print(output.decode("utf-8"))
+        output = subprocess.check_output(upload_cmd, shell=True, stderr=subprocess.STDOUT).decode()
+        print(output)
         return 1
     except Exception as e:
         print(e)
