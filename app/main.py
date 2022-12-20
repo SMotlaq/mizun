@@ -71,10 +71,11 @@ def upload(bot, update, args):
 
 def bmon_get():
     output = subprocess.check_output("sh mizun.sh", shell=True)
-    output = output.decode("utf-8")
-    output = output.split("GiB")
-    RX = float(output[0])
-    TX = float(output[1])
+    output2 = output.decode("utf-8")
+    print(output2)
+    output3 = output2.split("GiB")
+    RX = float(output3[0])
+    TX = float(output3[1])
     return RX, TX
 
 def dd_upload(count, speed, host):
