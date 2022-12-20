@@ -58,8 +58,10 @@ def upload(bot, update, args):
                     host = 'epicgames.com'
                 print(count, " ", speed, " ", host)
                 if(dd_upload(count, speed, host)):
+                    print("done")
                     send_text(int(inCome_uid), ms.done)
                 else:
+                    print("error")
                     send_text(int(inCome_uid), ms.upload_error)
             else:
                 send_text(int(inCome_uid), ms.no_arg)
