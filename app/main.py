@@ -18,6 +18,24 @@ bot        = telegram.Bot(token=my_token)
 updater    = Updater(my_token)
 allowed_users = [salman]
 
+def bmon_get():
+    output = subprocess.check_output("sh mizun.sh", shell=True)
+    output2 = output.decode("utf-8")
+    print(output2)
+    output3 = output2.split("GiB")
+    RX = float(output3[0])
+    TX = float(output3[1])
+    return RX, TX
+
+def dd_upload(count, speed, host):
+    try:
+        upload_cmd = "dd if=/dev/urandom bs=1024000 count=$ | pv -L @ | nc -u ^ 53".replace("$", count).replace("@", speed).replace("^", host)
+        subprocess.check_output(upload_cmd, shell=True)
+        return 1
+    except Exception as e:
+        print(e)
+        return 0
+
 def start(bot, update):
     inCome_uid, inCome_name, inCome_user_id = exctract_info(update.message.from_user)
     try:
@@ -69,24 +87,6 @@ def upload(bot, update, args):
             send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
     except Exception as e:
         print(e)
-
-def bmon_get():
-    output = subprocess.check_output("sh mizun.sh", shell=True)
-    output2 = output.decode("utf-8")
-    print(output2)
-    output3 = output2.split("GiB")
-    RX = float(output3[0])
-    TX = float(output3[1])
-    return RX, TX
-
-def dd_upload(count, speed, host):
-    try:
-        upload_cmd = "dd if=/dev/urandom bs=1024000 count=$ | pv -L @ | nc -u ^ 53".replace("$", count).replace("@", speed).replace("^", host)
-        subprocess.check_output(upload_cmd, shell=True)
-        return 1
-    except Exception as e:
-        print(e)
-        return 0
 
 def exctract_info(chat_id):
     inCome_uid = str(chat_id['id'])
