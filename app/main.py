@@ -14,7 +14,7 @@ database   = os.path.join(myPath, "DB.db")
 words_path = os.path.join(myPath, "words.txt")
 my_token   = tokens.my_token
 salman     = 95374546
-log_chan   = salman
+log_chan   = -1001795144287
 bot        = telegram.Bot(token=my_token)
 updater    = Updater(my_token)
 allowed_users = [salman]
