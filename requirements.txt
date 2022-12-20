@@ -1,3 +1,1 @@
 python-telegram-bot==12.5.1
-jdatetime==3.6.4
-Telethon==1.24.0
