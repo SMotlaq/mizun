@@ -29,9 +29,12 @@ def bmon_get():
 
 def dd_upload(count, speed, host):
     try:
-        upload_cmd = 'dd if=/dev/urandom bs=1024000 count=$ | pv -q -L @ | nc -u ^ 53'.replace("$", count).replace("@", speed).replace("^", host)
-        output = subprocess.call(upload_cmd, shell=True)
-        print(output)
+        #upload_cmd = 'dd if=/dev/urandom bs=1024000 count=$ | pv -q -L @ | nc -u ^ 53'.replace("$", count).replace("@", speed).replace("^", host)
+        #output = subprocess.call(upload_cmd, shell=True)
+        #print(output)
+        output = subprocess.check_output("sh mizun2.sh " + str(count) + " " + str(speed) + " " + str(host), shell=True)
+        output2 = output.decode("utf-8")
+        print(output2)
         return 1
     except Exception as e:
         print(e)
