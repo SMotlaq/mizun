@@ -4,10 +4,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-RUN chmod a+x run.sh
-
 WORKDIR /app
 
-RUN chmod a+x run.sh
-
-CMD ["./run.sh"]
+CMD ["python","main.py"]
