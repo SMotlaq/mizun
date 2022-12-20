@@ -19,7 +19,6 @@ updater    = Updater(my_token)
 allowed_users = [salman]
 
 def bmon_get():
-    check_cmd = "bmon -p ens192 -o 'ascii:diagram=detailed;quitafter=1' | grep --line-buffered Bytes | awk '{print $2 " " $3}'"
     output = subprocess.check_output("sh mizun.sh", shell=True)
     output2 = output.decode("utf-8")
     print(output2)
@@ -31,7 +30,8 @@ def bmon_get():
 def dd_upload(count, speed, host):
     try:
         upload_cmd = "dd if=/dev/urandom bs=1024000 count=$ | pv -L @ | nc -u ^ 53".replace("$", count).replace("@", speed).replace("^", host)
-        subprocess.check_output(upload_cmd, shell=True)
+        output = subprocess.check_output(upload_cmd, shell=True)
+        print(output.decode("utf-8"))
         return 1
     except Exception as e:
         print(e)
