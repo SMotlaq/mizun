@@ -31,7 +31,7 @@ def dd_upload(count, speed, host):
     try:
         upload_cmd = 'dd if=/dev/urandom bs=1024000 count=$ | pv -q -L @ | nc -u ^ 53'.replace("$", count).replace("@", speed).replace("^", host)
         #upload_cmd = 'echo "done"'
-        output = subprocess.check_output(upload_cmd) #, shell=True)
+        output = subprocess.check_output(upload_cmd, shell=True, start_new_session=False)
         print(output.decode("utf-8"))
         return 1
     except Exception as e:
