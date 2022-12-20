@@ -19,6 +19,7 @@ updater    = Updater(my_token)
 allowed_users = [salman]
 
 def bmon_get():
+    check_cmd = "bmon -p ens192 -o 'ascii:diagram=detailed;quitafter=1' | grep --line-buffered Bytes | awk '{print $2 " " $3}'"
     output = subprocess.check_output("sh mizun.sh", shell=True)
     output2 = output.decode("utf-8")
     print(output2)
