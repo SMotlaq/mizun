@@ -29,6 +29,9 @@ def bmon_get():
     RX = output3[0]
     TX = output3[1]
     
+    print(type(RX))
+    print(type(TX))
+    
     #print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
     #print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
     
@@ -44,14 +47,17 @@ def bmon_get():
     except Exception as e:
         print(e)
     
-    if(TX[-3] == 'K'):
-        TX = float(TX[:-3]) / 1024 / 1024
-    elif(TX[-3] == 'M'):
-        TX = float(TX[:-3]) / 1024
-    elif(RX[-3] == 'G'):
-        TX = float(TX[:-3])
-    elif(TX[-3] == 'T'):
-        TX = float(TX[:-3]) * 1024
+    try:
+        if(TX[-3] == 'K'):
+            TX = float(TX[:-3]) / 1024 / 1024
+        elif(TX[-3] == 'M'):
+            TX = float(TX[:-3]) / 1024
+        elif(RX[-3] == 'G'):
+            TX = float(TX[:-3])
+        elif(TX[-3] == 'T'):
+            TX = float(TX[:-3]) * 1024
+    except Exception as e:
+        print(e)
     
     print(RX)
     print(TX)
