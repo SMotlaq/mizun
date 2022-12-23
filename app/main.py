@@ -62,7 +62,7 @@ def bmon_get():
     #print(_RX)
     #print(_TX)
     
-    return _RX, _TX, round(_TX/_RX,2)
+    return str(_RX) + " " + RX[-3] + "iB", str(_TX) + " " + TX[-3] + "iB", round(_TX/_RX,2)
 
 def dd_upload(count, speed, host):
     try:
