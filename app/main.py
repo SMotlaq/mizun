@@ -21,22 +21,28 @@ allowed_users = [salman]
 def bmon_get():
     output = subprocess.check_output("sh mizun.sh", shell=True)
     output2 = output.decode("utf-8")
-    print(output2)
-    output3 = output2.split("\n")[0].split(" ")
+    #print(output2)
     
-    print(output3)
+    output3 = output2.split("\n")[0].split(" ")
+    #print(output3)
+    
     RX = output3[0]
     TX = output3[1]
-    print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
-    print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
-    if(RX[-3] == 'K'):
-        RX = float(RX[:-3]) / 1024 / 1024
-    elif(RX[-3] == 'M'):
-        RX = float(RX[:-3]) / 1024
-    elif(RX[-3] == 'G'):
-        RX = float(RX[:-3])
-    elif(RX[-3] == 'T'):
-        RX = float(RX[:-3]) * 1024
+    
+    #print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
+    #print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
+    
+    try:
+        if(RX[-3] == 'K'):
+            RX = float(RX[:-3]) / 1024 / 1024
+        elif(RX[-3] == 'M'):
+            RX = float(RX[:-3]) / 1024
+        elif(RX[-3] == 'G'):
+            RX = float(RX[:-3])
+        elif(RX[-3] == 'T'):
+            RX = float(RX[:-3]) * 1024
+    except Exception as e:
+        print(e)
     
     if(TX[-3] == 'K'):
         TX = float(TX[:-3]) / 1024 / 1024
