@@ -22,9 +22,25 @@ def bmon_get():
     output = subprocess.check_output("sh mizun.sh", shell=True)
     output2 = output.decode("utf-8")
     print(output2)
-    output3 = output2.split("GiB")
-    RX = float(output3[0])
-    TX = float(output3[1])
+    output3 = output2.split("iB")
+    
+    if(output3[0][-1] == 'M'):
+        output3[0] = float(outpu3[0][:-1]) / 1024
+    elif(output3[0][-1] == 'G'):
+        output3[0] = float(outpu3[0][:-1])
+    elif(output3[0][-1] == 'T'):
+        output3[0] = float(outpu3[0][:-1]) * 1024
+
+    if(output3[1][-1] == 'M'):
+        output3[1] = float(outpu3[1][:-1]) / 1024
+    elif(output3[1][-1] == 'G'):
+        output3[1] = float(outpu3[1][:-1])
+    elif(output3[1][-1] == 'T'):
+        output3[1] = float(outpu3[1][:-1]) * 1024
+    
+    RX = output3[0]
+    TX = output3[1]
+    
     return RX, TX
 
 def dd_upload(count, speed, host):
