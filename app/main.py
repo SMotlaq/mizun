@@ -32,8 +32,8 @@ def bmon_get():
     #print(type(RX))
     #print(type(TX))
     
-    print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
-    print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
+    #print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
+    #print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
     
     try:
         if(RX[-3] == 'K'):
@@ -43,7 +43,6 @@ def bmon_get():
         elif(RX[-3] == 'G'):
             _RX = float(RX[:-3])
         elif(RX[-3] == 'T'):
-            print("here RX")
             _RX = float(RX[:-3]) * 1024
     except Exception as e:
         print(e)
@@ -53,18 +52,17 @@ def bmon_get():
             _TX = float(TX[:-3]) / 1024 / 1024
         elif(TX[-3] == 'M'):
             _TX = float(TX[:-3]) / 1024
-        elif(RX[-3] == 'G'):
+        elif(TX[-3] == 'G'):
             _TX = float(TX[:-3])
         elif(TX[-3] == 'T'):
-            print("here TX")
             _TX = float(TX[:-3]) * 1024
     except Exception as e:
         print(e)
     
-    print(_RX)
-    print(_TX)
+    #print(_RX)
+    #print(_TX)
     
-    return _RX, _TX, _TX/_RX
+    return _RX, _TX, round(_TX/_RX,2)
 
 def dd_upload(count, speed, host):
     try:
