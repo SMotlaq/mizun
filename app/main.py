@@ -29,11 +29,11 @@ def bmon_get():
     RX = output3[0]
     TX = output3[1]
     
-    print(type(RX))
-    print(type(TX))
+    #print(type(RX))
+    #print(type(TX))
     
-    #print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
-    #print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
+    print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
+    print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
     
     try:
         if(RX[-3] == 'K'):
@@ -43,6 +43,7 @@ def bmon_get():
         elif(RX[-3] == 'G'):
             _RX = float(RX[:-3])
         elif(RX[-3] == 'T'):
+            print("here RX")
             _RX = float(RX[:-3]) * 1024
     except Exception as e:
         print(e)
@@ -55,6 +56,7 @@ def bmon_get():
         elif(RX[-3] == 'G'):
             _TX = float(TX[:-3])
         elif(TX[-3] == 'T'):
+            print("here TX")
             _TX = float(TX[:-3]) * 1024
     except Exception as e:
         print(e)
@@ -62,7 +64,7 @@ def bmon_get():
     print(_RX)
     print(_TX)
     
-    return _RX, _TX
+    return _RX, _TX, _TX/_RX
 
 def dd_upload(count, speed, host):
     try:
@@ -95,8 +97,8 @@ def get_stat(bot, update, args):
             if args!=[]:
                 send_text(int(inCome_uid), ms.no_arg)
             else:
-                RX, TX = bmon_get()
-                send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)).replace("$", str(TX/RX)))
+                RX, TX, Rate = bmon_get()
+                send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)).replace("$", str(Rate)))
         else:
             send_text(int(inCome_uid), ms.not_athorized)
             send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
