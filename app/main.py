@@ -22,24 +22,28 @@ def bmon_get():
     output = subprocess.check_output("sh mizun.sh", shell=True)
     output2 = output.decode("utf-8")
     print(output2)
-    output3 = output2.split("iB")
-    
-    if(output3[0][-1] == 'M'):
-        output3[0] = float(outpu3[0][:-1]) / 1024
-    elif(output3[0][-1] == 'G'):
-        output3[0] = float(outpu3[0][:-1])
-    elif(output3[0][-1] == 'T'):
-        output3[0] = float(outpu3[0][:-1]) * 1024
-
-    if(output3[1][-1] == 'M'):
-        output3[1] = float(outpu3[1][:-1]) / 1024
-    elif(output3[1][-1] == 'G'):
-        output3[1] = float(outpu3[1][:-1])
-    elif(output3[1][-1] == 'T'):
-        output3[1] = float(outpu3[1][:-1]) * 1024
+    output3 = output2.split("\n")[0].split(" ")
     
     RX = output3[0]
     TX = output3[1]
+    
+    if(RX[-3] == 'K'):
+        RX = float(RX[:-3]) / 1024 / 1024
+    elif(RX[-3] == 'M'):
+        RX = float(RX[:-3]) / 1024
+    elif(RX[-3] == 'G'):
+        RX = float(RX[:-3])
+    elif(RX[-3] == 'T'):
+        RX = float(RX[:-3]) * 1024
+    
+    if(TX[-3] == 'K'):
+        TX = float(TX[:-3]) / 1024 / 1024
+    elif(TX[-3] == 'M'):
+        TX = float(TX[:-3]) / 1024
+    elif(RX[-3] == 'G'):
+        TX = float(TX[:-3])
+    elif(TX[-3] == 'T'):
+        TX = float(TX[:-3]) * 1024
     
     return RX, TX
 
@@ -75,7 +79,7 @@ def get_stat(bot, update, args):
                 send_text(int(inCome_uid), ms.no_arg)
             else:
                 RX, TX = bmon_get()
-                send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)))#.replace("$", str(TX/RX)))
+                send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)).replace("$", str(TX/RX)))
         else:
             send_text(int(inCome_uid), ms.not_athorized)
             send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
