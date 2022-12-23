@@ -37,32 +37,32 @@ def bmon_get():
     
     try:
         if(RX[-3] == 'K'):
-            RX = float(RX[:-3]) / 1024 / 1024
+            _RX = float(RX[:-3]) / 1024 / 1024
         elif(RX[-3] == 'M'):
-            RX = float(RX[:-3]) / 1024
+            _RX = float(RX[:-3]) / 1024
         elif(RX[-3] == 'G'):
-            RX = float(RX[:-3])
+            _RX = float(RX[:-3])
         elif(RX[-3] == 'T'):
-            RX = float(RX[:-3]) * 1024
+            _RX = float(RX[:-3]) * 1024
     except Exception as e:
         print(e)
     
     try:
         if(TX[-3] == 'K'):
-            TX = float(TX[:-3]) / 1024 / 1024
+            _TX = float(TX[:-3]) / 1024 / 1024
         elif(TX[-3] == 'M'):
-            TX = float(TX[:-3]) / 1024
+            _TX = float(TX[:-3]) / 1024
         elif(RX[-3] == 'G'):
-            TX = float(TX[:-3])
+            _TX = float(TX[:-3])
         elif(TX[-3] == 'T'):
-            TX = float(TX[:-3]) * 1024
+            _TX = float(TX[:-3]) * 1024
     except Exception as e:
         print(e)
     
-    print(RX)
-    print(TX)
+    print(_RX)
+    print(_TX)
     
-    return RX, TX
+    return _RX, _TX
 
 def dd_upload(count, speed, host):
     try:
