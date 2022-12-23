@@ -24,7 +24,7 @@ def bmon_get():
     print(output2)
     output3 = output2.split("\n")[0].split(" ")
     
-    print(outpu3)
+    print(output3)
     RX = output3[0]
     TX = output3[1]
     print(RX)
