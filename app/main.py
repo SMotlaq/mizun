@@ -75,7 +75,7 @@ def get_stat(bot, update, args):
                 send_text(int(inCome_uid), ms.no_arg)
             else:
                 RX, TX = bmon_get()
-                send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)).replace("$", str(TX/RX)))
+                send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)))#.replace("$", str(TX/RX)))
         else:
             send_text(int(inCome_uid), ms.not_athorized)
             send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
