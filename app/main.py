@@ -27,8 +27,8 @@ def bmon_get():
     print(output3)
     RX = output3[0]
     TX = output3[1]
-    print(RX)
-    print(TX)
+    print(RX, " ", RX[-3], " ", RX[:-3])
+    print(TX, " ", TX[-3], " ", TX[:-3])
     if(RX[-3] == 'K'):
         RX = float(RX[:-3]) / 1024 / 1024
     elif(RX[-3] == 'M'):
