@@ -24,9 +24,11 @@ def bmon_get():
     print(output2)
     output3 = output2.split("\n")[0].split(" ")
     
+    print(outpu3)
     RX = output3[0]
     TX = output3[1]
-    
+    print(RX)
+    print(TX)
     if(RX[-3] == 'K'):
         RX = float(RX[:-3]) / 1024 / 1024
     elif(RX[-3] == 'M'):
@@ -44,6 +46,9 @@ def bmon_get():
         TX = float(TX[:-3])
     elif(TX[-3] == 'T'):
         TX = float(TX[:-3]) * 1024
+    
+    print(RX)
+    print(TX)
     
     return RX, TX
 
