@@ -9,6 +9,11 @@ import os
 my_token   = 0
 admin_uid  = 0
 
+output = subprocess.check_output("ifconfig", shell=True)
+output2 = output.decode("utf-8")
+print(output2)
+
+
 def bmon_get():
     output = subprocess.check_output("sh get_stat.sh", shell=True)
     output2 = output.decode("utf-8")
