@@ -3,20 +3,14 @@ from telegram import user
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import messages as ms
 import subprocess
-import tokens
-import time
 import signal
 import os
 
-myPath     = os.getcwd()
-database   = os.path.join(myPath, "DB.db")
-words_path = os.path.join(myPath, "words.txt")
-my_token   = tokens.my_token
-salman     = 95374546
-log_chan   = -1001795144287
+my_token   = 0
+admin_uid  = 0
 bot        = telegram.Bot(token=my_token)
 updater    = Updater(my_token)
-allowed_users = [salman]
+allowed_users = [admin_uid]
 
 def bmon_get():
     output = subprocess.check_output("sh mizun.sh", shell=True)
@@ -84,7 +78,7 @@ def start(bot, update):
             send_text(int(inCome_uid), ms.start)
         else:
             send_text(int(inCome_uid), ms.not_athorized)
-            send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
+            send_text(admin_uid, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
     except Exception as e:
         print(e)
 
@@ -99,7 +93,7 @@ def get_stat(bot, update, args):
                 send_text(int(inCome_uid), ms.traffic.replace("&", str(TX)).replace("%", str(RX)).replace("$", str(Rate)))
         else:
             send_text(int(inCome_uid), ms.not_athorized)
-            send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
+            send_text(admin_uid, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
     except Exception as e:
         print(e)
 
@@ -125,7 +119,7 @@ def upload(bot, update, args):
                 send_text(int(inCome_uid), ms.no_arg)
         else:
             send_text(int(inCome_uid), ms.not_athorized)
-            send_text(log_chan, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
+            send_text(admin_uid, ms.fozool_detected + '\n' + inCome_user_id + '\n' + inCome_name)
     except Exception as e:
         print(e)
 
@@ -177,6 +171,16 @@ def handler(signum, frame):
     updater.idle()
 
 if __name__ == "__main__":
+
+    for k,v in os.environ.items():
+        if k == 'BOT_TOKEN':
+            my_token = v
+        if k == 'ADMIN_UID':
+            admin_uid = int(v)
+
+    print(my_token)
+    print(admin_uid)
+    
     signal.signal(signal.SIGINT, handler)
     start_command = CommandHandler('start', start)
     updater.dispatcher.add_handler(start_command)
@@ -186,5 +190,5 @@ if __name__ == "__main__":
     updater.dispatcher.add_handler(upload_command)
     updater.start_polling()
 
-    send_text(log_chan, 'Bot started')
+    send_text(admin_uid, 'Bot started')
 
