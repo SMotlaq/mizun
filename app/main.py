@@ -9,13 +9,24 @@ import os
 my_token   = 0
 admin_uid  = 0
 
-output = subprocess.check_output("ifconfig", shell=True)
-output2 = output.decode("utf-8")
-print(output2)
+for k,v in os.environ.items():
+    if k == 'BOT_TOKEN':
+        my_token = v
+    if k == 'ADMIN_UID':
+        admin_uid = int(v)
+    if k == 'NIC_NAME':
+        nic_name = int(v)
 
+print(nic_name)
+print(my_token)
+print(admin_uid)
+
+bot        = telegram.Bot(token=my_token)
+updater    = Updater(my_token)
+allowed_users = [admin_uid]
 
 def bmon_get():
-    output = subprocess.check_output("sh get_stat.sh", shell=True)
+    output = subprocess.check_output("sh get_stat.sh" + str(nic_name), shell=True)
     output2 = output.decode("utf-8")
     print(output2)
     
@@ -173,25 +184,6 @@ def handler(signum, frame):
     updater.idle()
 
 if __name__ == "__main__":
-
-    for k,v in os.environ.items():
-        if k == 'BOT_TOKEN':
-            my_token = v
-        if k == 'ADMIN_UID':
-            admin_uid = int(v)
-
-    print("goog")
-    print(my_token)
-    print(admin_uid)
-
-    global bot
-    global updater
-    global allowed_users
-
-    bot        = telegram.Bot(token=my_token)
-    updater    = Updater(my_token)
-    allowed_users = [admin_uid]
-
     signal.signal(signal.SIGINT, handler)
     start_command = CommandHandler('start', start)
     updater.dispatcher.add_handler(start_command)
