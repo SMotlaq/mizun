@@ -8,4 +8,6 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app
 
+RUN chmod 777 get_stat.sh uploader.sh
+
 CMD ["python","main.py"]
