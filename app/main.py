@@ -12,10 +12,10 @@ admin_uid  = 0
 def bmon_get():
     output = subprocess.check_output("sh get_stat.sh", shell=True)
     output2 = output.decode("utf-8")
-    #print(output2)
+    print(output2)
     
     output3 = output2.split("\n")[0].split(" ")
-    #print(output3)
+    print(output3)
     
     RX = output3[0]
     TX = output3[1]
@@ -23,8 +23,8 @@ def bmon_get():
     #print(type(RX))
     #print(type(TX))
     
-    #print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
-    #print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
+    print(RX, " ", RX[-3], " ", RX[:-3], float(RX[:-3]))
+    print(TX, " ", TX[-3], " ", TX[:-3], float(TX[:-3]))
     
     try:
         if(RX[-3] == 'K'):
@@ -50,8 +50,8 @@ def bmon_get():
     except Exception as e:
         print(e)
     
-    #print(_RX)
-    #print(_TX)
+    print(_RX)
+    print(_TX)
     
     return RX[:-3] + " " + RX[-3] + "iB", TX[:-3] + " " + TX[-3] + "iB", round(_TX/_RX, 2)
 
