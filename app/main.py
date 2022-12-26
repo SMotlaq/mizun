@@ -182,14 +182,14 @@ if __name__ == "__main__":
     print(my_token)
     print(admin_uid)
 
-    signal.signal(signal.SIGINT, handler)
-    start_command = CommandHandler('start', start)
-    updater.dispatcher.add_handler(start_command)
-    get_stat_command = CommandHandler('get_stat', get_stat, pass_args=True)
-    updater.dispatcher.add_handler(get_stat_command)
-    upload_command = CommandHandler('upload', upload, pass_args=True)
-    updater.dispatcher.add_handler(upload_command)
-    updater.start_polling()
+    # signal.signal(signal.SIGINT, handler)
+    # start_command = CommandHandler('start', start)
+    # updater.dispatcher.add_handler(start_command)
+    # get_stat_command = CommandHandler('get_stat', get_stat, pass_args=True)
+    # updater.dispatcher.add_handler(get_stat_command)
+    # upload_command = CommandHandler('upload', upload, pass_args=True)
+    # updater.dispatcher.add_handler(upload_command)
+    # updater.start_polling()
 
-    send_text(admin_uid, 'Bot started')
+    # send_text(admin_uid, 'Bot started')
 
