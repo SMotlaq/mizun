@@ -8,9 +8,6 @@ import os
 
 my_token   = 0
 admin_uid  = 0
-bot        = telegram.Bot(token=my_token)
-updater    = Updater(my_token)
-allowed_users = [admin_uid]
 
 def bmon_get():
     output = subprocess.check_output("sh mizun.sh", shell=True)
@@ -181,6 +178,14 @@ if __name__ == "__main__":
     print("goog")
     print(my_token)
     print(admin_uid)
+
+    global bot
+    global updater
+    global allowed_users
+
+    bot        = telegram.Bot(token=my_token)
+    updater    = Updater(my_token)
+    allowed_users = [admin_uid]
 
     # signal.signal(signal.SIGINT, handler)
     # start_command = CommandHandler('start', start)
