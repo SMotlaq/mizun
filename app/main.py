@@ -15,7 +15,7 @@ for k,v in os.environ.items():
     if k == 'ADMIN_UID':
         admin_uid = int(v)
     if k == 'NIC_NAME':
-        nic_name = int(v)
+        nic_name = v
 
 print(nic_name)
 print(my_token)
