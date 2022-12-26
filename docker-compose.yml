@@ -8,5 +8,5 @@ services:
         volumes:
         - ./app:/app
         environment:
-        - BOT_TOKEN: "xxxxxxxxxxxx"
-        - ADMIN_UID: "xxxxx"
+        - BOT_TOKEN= "1884354297:AAFs6shA-k397Wonu-3g_rlHG5ZjJ6OJS3M"
+        - ADMIN_UID= "95374546"
