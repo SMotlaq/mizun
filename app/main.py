@@ -178,9 +178,10 @@ if __name__ == "__main__":
         if k == 'ADMIN_UID':
             admin_uid = int(v)
 
+    print("goog")
     print(my_token)
     print(admin_uid)
-    
+
     signal.signal(signal.SIGINT, handler)
     start_command = CommandHandler('start', start)
     updater.dispatcher.add_handler(start_command)
