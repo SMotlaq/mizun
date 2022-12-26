@@ -26,7 +26,7 @@ updater    = Updater(my_token)
 allowed_users = [admin_uid]
 
 def bmon_get():
-    output = subprocess.check_output("sh get_stat.sh" + str(nic_name), shell=True)
+    output = subprocess.check_output("sh get_stat.sh " + str(nic_name), shell=True)
     output2 = output.decode("utf-8")
     print(output2)
     
