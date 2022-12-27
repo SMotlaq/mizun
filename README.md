@@ -17,8 +17,8 @@ A service connected to a Telegram bot that generates fake upload. Usually used t
 
 1. Hit `/get_stat` to get the TX (upload), RX (download), and Ratio (upload / download)
 2. The `/upload SIZE SPEED_LIMIT DESTINATION` command need 3 parameters:
- 1. SIZE: The amount of bytes you want to upload (in MiB)
- 2. SPEED_LIMIT: The maximum rate of transfer. Foe example 10m (10MiB/s) or 250k (250KiB/s)
- 3. DESTINATION: The desination host. For example twitch.tv
+  * SIZE: The amount of bytes you want to upload (in MiB)
+  * SPEED_LIMIT: The maximum rate of transfer. Foe example 10m (10MiB/s) or 250k (250KiB/s)
+  * DESTINATION: The desination host. For example twitch.tv
  
  ***NOTE: It's not an attack!*** The random data will send to the port 53. It will be droped at the edge because this port is closed (probably!) in the destinaion host
